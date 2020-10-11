@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,
+        body,
+        #container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        #container {
+            position: absolute;
+            text-align: center;
+        }
+
+        #player>div {
+            width: 100%;
+            display: contents;
+        }
+
+
+        video {
+            outline: none;
+            width: 100%;
+            position: relative;
+            height: 665px;
+        }
+        label {
+            cursor: pointer;
+            /* Style as you please, it will become the visible UI component. */
+         }
+         
+         #i_file {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+         }
+         #customcontrols {
+            font-size: 0;
+        }
+        #customcontrols figcaption { 
+            background: rgba(0,0,0,0.6); 
+            display: none; padding: .5em; 
+            color: #fff;
+            position: relative; top: -2.2rem;
+            text-align: right;
+            margin-bottom: -2.2rem;
+        }
+        #customcontrols figcaption a { 
+            text-decoration: none; font-size: 1rem; 
+            margin-right: .5rem;
+            color: #fff;
+            border-bottom: none;
+        }
+        #customcontrols a:hover { color: red; }
+        #customcontrols a:visited { color: #770; }
+.i{
+    position: absolute;
+    z-index: 999999999999999;
+    padding: 13px;
+    font-size: 18px;
+    color: white;
+}

@@ -1,0 +1,16 @@
+directories:
+  output: dist
+  buildResources: build
+win:
+  publish:
+    - github
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+    - target: zip
+      arch:
+        - x64
+        - ia32
+electronVersion: 10.1.3

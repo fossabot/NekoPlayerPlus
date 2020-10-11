@@ -1,0 +1,48 @@
+{
+  "name": "NekoPlayer-plus",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "author": "Neyunse",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder build --win always"
+  },
+  "build": {
+    "win": {
+      "publish": {
+        "provider": "github",
+        "owner": "Neyunse",
+        "protocol": "https",
+        "token": "ad3876235a308c5b0ba933c3f7027103afce603d",
+        "releaseType": "prerelease"
+      },
+     "target": [
+      {
+       "target": "nsis",
+       "arch": [
+        "x64",
+        "ia32"
+       ]
+      },
+      {
+       "target": "zip",
+       "arch": [
+        "x64",
+        "ia32"
+       ]
+      }
+     ]
+    }
+   },
+  "devDependencies": {
+    "electron": "^10.1.3",
+    "electron-builder": "^22.8.1"
+  },
+  "dependencies": {
+    "electron-log": "^4.2.4",
+    "jquery": "^3.5.1"
+    
+  }
+}
