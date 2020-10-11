@@ -3,7 +3,11 @@ directories:
   buildResources: build
 win:
   publish:
-    - github
+    provider: github
+    owner: Neyunse
+    protocol: https
+    token: <stripped sensitive data>
+    releaseType: prerelease
   target:
     - target: nsis
       arch:

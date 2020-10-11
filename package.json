@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder build --win always"
+    "build": "electron-builder build --win --publish always"
   },
   "build": {
     "win": {
@@ -15,7 +15,7 @@
         "provider": "github",
         "owner": "Neyunse",
         "protocol": "https",
-        "token": "ad3876235a308c5b0ba933c3f7027103afce603d",
+        "token": "",
         "releaseType": "prerelease"
       },
      "target": [
