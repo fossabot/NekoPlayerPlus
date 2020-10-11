@@ -1,48 +1,49 @@
 {
-  "name": "NekoPlayer-plus",
-  "version": "1.0.0",
-  "main": "src/app.js",
-  "author": "Neyunse",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "start": "electron .",
-    "build": "electron-builder build --win --publish always"
-  },
-  "build": {
-    "win": {
-      "publish": {
-        "provider": "github",
-        "owner": "Neyunse",
-        "protocol": "https",
-        "token": "",
-        "releaseType": "prerelease"
-      },
-     "target": [
-      {
-       "target": "nsis",
-       "arch": [
-        "x64",
-        "ia32"
-       ]
-      },
-      {
-       "target": "zip",
-       "arch": [
-        "x64",
-        "ia32"
-       ]
-      }
+ "name": "NekoPlayer-plus",
+ "version": "1.0.0",
+ "main": "src/app.js",
+ "author": "Neyunse",
+ "license": "MIT",
+ "private": true,
+ "scripts": {
+  "start": "electron .",
+  "build": "cross-env GH_TOKEN= electron-builder build --win --publish always"
+ },
+ "build": {
+  "win": {
+   "publish": {
+    "provider": "github",
+    "owner": "Neyunse",
+    "protocol": "https",
+    "repo": "NekoPlayerPlus",
+    "token": "",
+    "releaseType": "prerelease"
+   },
+   "target": [
+    {
+     "target": "nsis",
+     "arch": [
+      "x64",
+      "ia32"
+     ]
+    },
+    {
+     "target": "zip",
+     "arch": [
+      "x64",
+      "ia32"
      ]
     }
-   },
-  "devDependencies": {
-    "electron": "^10.1.3",
-    "electron-builder": "^22.8.1"
-  },
-  "dependencies": {
-    "electron-log": "^4.2.4",
-    "jquery": "^3.5.1"
-    
+   ]
   }
+ },
+ "devDependencies": {
+  "electron": "^10.1.3",
+  "electron-builder": "^22.8.1"
+ },
+ "dependencies": {
+  "cross-env": "^7.0.2",
+  "electron-log": "^4.2.4",
+  "jquery": "^3.5.1"
+ }
 }

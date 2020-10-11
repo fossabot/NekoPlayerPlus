@@ -1,5 +1,6 @@
 const {app, BrowserWindow, protocol, ipcMain, autoUpdater} = require('electron');
 const log = require('electron-log');
+let win;
 //-------------------------------------------------------------------
 // Logging
 //
@@ -30,7 +31,7 @@ function createWindow () {
   win.maximizable = false
 
   // Abre las herramientas de desarrollo (DevTools).
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 }
 
 // Este método se llamará cuando Electron haya finalizado
@@ -93,7 +94,13 @@ function sendStatus(text) {
     // }, 5000)
   })
   // Wait a second for the window to exist before checking for updates.
-  //autoUpdater.setFeedURL('http://127.0.0.1:8080/');
+  var data = {
+    "provider": "github",
+    "owner": "Neyunse",
+    "repo": "NekoPlayerPlus",
+    "token": "d198c359c176013d7619c7aa9712e66ab8898c60"
+  }
+  //autoUpdater.setFeedURL(data)
   setTimeout(function() {
     log.info('starting update check');
     autoUpdater.checkForUpdates()  
