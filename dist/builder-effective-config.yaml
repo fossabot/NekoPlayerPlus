@@ -6,6 +6,7 @@ win:
     provider: github
     owner: Neyunse
     protocol: https
+    repo: NekoPlayerPlus
     token: <stripped sensitive data>
     releaseType: prerelease
   target:

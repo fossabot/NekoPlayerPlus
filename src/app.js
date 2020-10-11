@@ -94,12 +94,6 @@ function sendStatus(text) {
     // }, 5000)
   })
   // Wait a second for the window to exist before checking for updates.
-  var data = {
-    "provider": "github",
-    "owner": "Neyunse",
-    "repo": "NekoPlayerPlus",
-    "token": "d198c359c176013d7619c7aa9712e66ab8898c60"
-  }
   //autoUpdater.setFeedURL(data)
   setTimeout(function() {
     log.info('starting update check');
