@@ -14,11 +14,11 @@ Windows | ✓
 Mac | X
 Linux | X
 ## How to install
-1) Download the latest version.
+1) [Download the latest version](https://github.com/Neyunse/NekoPlayerPlus/releases).
 2) Install the app from the installer.
 3) Enjoy!
 ## How to use
-1) Click on the following icon
+1) Click on the following icon to search any video
 
 ![](/Captures/video-ico.png)
 
