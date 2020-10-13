@@ -343,8 +343,9 @@ function App() {
           volume={volume}
         />
       </div>
+      <img className="logo" srcSet="https://images.vexels.com/media/users/3/143598/isolated/preview/3cc82d2de02993c9f82ebf393fdf9edb-gato-maneki-neko-by-vexels.png" alt=""/>
       <div className="i">
-          <label for="i_file"><i className="fas fa-video" title="Open new video"></i></label>
+          <label htmlFor="i_file" title="Open new video"><i className="fas fa-video"></i></label>
           <input type="file" id="i_file" onChange={handleVideoUpload} accept=".mp4,.mov,.mkv" />
         </div>
     </>

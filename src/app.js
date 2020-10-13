@@ -30,6 +30,7 @@ function createWindow() {
   win.setMenu(null)
   win.loadURL(`file://${__dirname}/www/index.html#v${app.getVersion()}`)
   win.maximizable = false
+  
   autoUpdater.checkForUpdates();
   ipcMain.on('app_version', (event) => {
     event.sender.send('app_version', { version: app.getVersion() });

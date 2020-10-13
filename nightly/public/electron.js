@@ -3,6 +3,7 @@ process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
 /* ****************************************************************************** */
 /* ************************** importando electron ******************************* */
 const { app, BrowserWindow, Menu, screen, nativeImage, ipcMain } = require('electron');
+const {autoUpdater} = require("electron-updater");
 /* *********************** Dependencias para Electron  ************************** */
 const isDev = require('electron-is-dev');
 const path = require('path');
@@ -22,7 +23,7 @@ image.setTemplateImage(true);
 /* ****************************************************************************** */
 /* ************************* constantes para Url ******************************** */
 const mainUrl = isDev
-  ? "http://localhost:3000/#/login"
+  ? "http://localhost:3000/"
   : url.format({
       pathname: path.join(__dirname, '../build/index.html'),
       protocol: 'file',
@@ -52,6 +53,25 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainwindow.loadURL(mainUrl);
+
+  autoUpdater.checkForUpdates();
+  ipcMain.on('app_version', (event) => {
+    event.sender.send('app_version', { version: app.getVersion() });
+  });
+  autoUpdater.on('update-not-available', () => {
+    console.log("No hay actualizaciones")
+  });
+  autoUpdater.on('update-available', () => {
+    mainwindow.webContents.send('update_available');
+  });
+  
+  autoUpdater.on('update-downloaded', () => {
+    mainwindow.webContents.send('update_downloaded');
+  });
+  
+  ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+  });
 
   // Open the DevTools.
   if (isDev) {

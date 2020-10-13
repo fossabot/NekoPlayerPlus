@@ -3,11 +3,19 @@
     padding: 0px;
     overflow: hidden;
 }
+.logo{
+  position: relative;
+  z-index: 30;
+}
 .MuiGrid-justify-xs-center {
     transform: translateY(33ch);
 }
 .MuiSlider-root{
     color: #f50057!important;
+}
+.makeStyles-playerWrapper-1 {
+  z-index: 9999999;
+  position: absolute!important;
 }
 .makeStyles-playerWrapper-1>div{
     width: 100%;
@@ -43,4 +51,75 @@ label {
   .WithStyles\(ForwardRef\(Slider\)\)-thumb-17 {
     left: 11px!important;
     position: absolute!important;
+    display: none!important;
+}
+.fa-video{
+    text-shadow: 0 0 5px #f50057, 0 0 5px #f50057;
+    width: 24px;
+    height: 17px;
+    padding: 7px;
+}
+
+/* The Modal (background) */
+
+#modal {
+    color: #000;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    top: 43px;
+    margin: auto 369px;
+    width: 535px;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-header{
+    margin-bottom: 48px;
+}
+.modal-body{
+    font-family: Arial,sans-serif;
+    font-size: 15px;
+}
+.modal-footer{
+
+    margin-top: 23px;
+}
+#restart-button{
+    padding: 7px 7px 7px;
+    background: mediumvioletred;
+    color: white;
+    border: 0px;
+    border-radius: 3px;
+    width: 100%;
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
 }
