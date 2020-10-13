@@ -3,8 +3,9 @@
     padding: 0px;
     overflow: hidden;
 }
-.logo{
-  position: relative;
+.logo {
+  transform: translate(54ch, 15ch);
+  position: absolute;
   z-index: 30;
 }
 .MuiGrid-justify-xs-center {

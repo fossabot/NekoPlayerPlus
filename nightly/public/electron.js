@@ -40,7 +40,7 @@ function createWindow() {
     width: 1186,
     height: 691,
     resizable: false,
-    //icon:path.join(__dirname,'icons','ic.png'),
+    icon:path.join(__dirname,'window_icon.png'),
     title: "NekoPlayer Plus - Nightly v"+app.getVersion(),
     backgroundColor: "#000",
     webPreferences: {

@@ -15,6 +15,7 @@ import Popover from "@material-ui/core/Popover";
 import screenful from "screenfull"
 import './assets/css/master.css'
 import Controls from "./playerControls";
+import logo from "./assets/img/icon.png"
 
 function ValueLabelComponent(props) {
   const { children, open, value } = props;
@@ -343,7 +344,7 @@ function App() {
           volume={volume}
         />
       </div>
-      <img className="logo" srcSet="https://images.vexels.com/media/users/3/143598/isolated/preview/3cc82d2de02993c9f82ebf393fdf9edb-gato-maneki-neko-by-vexels.png" alt=""/>
+      <img className="logo" srcSet={logo} alt=""/>
       <div className="i">
           <label htmlFor="i_file" title="Open new video"><i className="fas fa-video"></i></label>
           <input type="file" id="i_file" onChange={handleVideoUpload} accept=".mp4,.mov,.mkv" />
