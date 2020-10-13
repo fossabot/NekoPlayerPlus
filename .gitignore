@@ -1,0 +1,8 @@
+node_modules
+dist
+dev-app-update.yml
+.env
+package.json
+.vscode
+yarn-error.log
+yarn.lock

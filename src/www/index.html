@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>NekoPlayer Plus</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="never" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" href="assets/css/master.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script src="https://kit.fontawesome.com/c1ac2e2623.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="player">
+            <figure id="customcontrols">
+                <figcaption>
+                    <a href="#">▶</a>
+                    <cite>Here Be Dragons</cite>
+                </figcaption>
+            </figure>
+            <div id="neko" class="neko">
+                <img src="" alt="">
+            </div>
+        </div>
+    </div>
+    <div id="message"></div>
+    <div class="i">
+        <label for="i_file"><i class="fas fa-video" title="Open new video"></i></label>
+        <input type="file" id="i_file" value="" accept=".mp4,.mov,.mkv">
+    </div>
+    <div id="modal" class="hidden">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onClick="closeNotification()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="message-update"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="restart-button" onClick="restartApp()" class="hidden">
+                    Restart
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+        const { ipcRenderer } = require('electron');
+        const version = document.getElementById('version');
+        const notification = document.getElementById('modal');
+        const message = document.getElementById('message-update');
+        const restartButton = document.getElementById('restart-button');
+
+        ipcRenderer.send('app_version');
+        ipcRenderer.on('app_version', (event, arg) => {
+            ipcRenderer.removeAllListeners('app_version');
+            document.title = 'NekoPlayer Plus - v' + arg.version;
+        });
+
+        ipcRenderer.on('update_available', () => {
+            ipcRenderer.removeAllListeners('update_available');
+            document.title = 'NekoPlayer Plus - new update is available'
+            message.innerText = 'A new update is available. Downloading now...';
+            notification.classList.remove('hidden');
+        });
+        ipcRenderer.on('update_not_available', () => {
+            console.log("No hay actualizaciones")
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            ipcRenderer.removeAllListeners('update_downloaded');
+            message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+            restartButton.classList.remove('hidden');
+            notification.classList.remove('hidden');
+        });
+
+        function closeNotification() {
+            notification.classList.add('hidden');
+        }
+
+        function restartApp() {
+            ipcRenderer.send('restart_app');
+        }
+    </script>
+</body>
+
+</html>
