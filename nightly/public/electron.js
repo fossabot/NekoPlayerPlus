@@ -1,120 +1,88 @@
-/* eslint-disable import/no-extraneous-dependencies */
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'; // desabilitado advetencias porque no me gusta verlas
-// Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain } = require('electron');
-// in the main store
-const { forwardToRenderer, triggerAlias, replayActionMain } = require('electron-redux');
-
-const { applyMiddleware, createStore, combineReducers } = require('redux');
-
-
-const path = require('path');
+/* ********** desabilitado advetencias porque no me gusta verlas **************** */
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1';
+/* ****************************************************************************** */
+/* ************************** importando electron ******************************* */
+const { app, BrowserWindow, Menu, screen, nativeImage, ipcMain } = require('electron');
+/* *********************** Dependencias para Electron  ************************** */
 const isDev = require('electron-is-dev');
+const path = require('path');
 const url = require('url');
-const  reducers  = require('../src/Redux/Redux-reducer');
+const ver = require("../package.json").version;
+const name = require("../package.json").name;
+// const server = require('../../backend/bin/www');
+/* ************************** Eliminar menu de electron ******************************* */
+Menu.setApplicationMenu(null);
 
-let mainWindow;
-let prueva;
+/* ************************** icono a la ventana electron ******************************* */
+const image = nativeImage.createFromPath(path.join(__dirname, 'icon.png'));
+image.setTemplateImage(true);
+/* ****************************************************************************** */
+/* ******************** Objetos Para iniciarlizar Ventanas ********************** */
 
+/* ****************************************************************************** */
+/* ************************* constantes para Url ******************************** */
+const mainUrl = isDev
+  ? "http://localhost:3000/#/login"
+  : url.format({
+      pathname: path.join(__dirname, '../build/index.html'),
+      protocol: 'file',
+      slashes: true
+    });
+/* ************************************************************************************ */
+/* ******** funcion principal para la creacion de ventans y envots de estas *********** */
 function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+  /* ***** determina el alto y ancho de la pantala para usar pantalla completa ******** */
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  /* ********************************************************************************** */
+  // Create the browser window.
+  const mainwindow = new BrowserWindow({
+    width: 1186,
+    height: 691,
+    resizable: false,
+    //icon:path.join(__dirname,'icons','ic.png'),
+    title: "NekoPlayer Plus - Nightly v"+app.getVersion(),
+    backgroundColor: "#000",
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+      webviewTag: true,
+      enableRemoteModule: true,
+      preload: path.join(__dirname, 'preload.js')
+    },
   });
 
-  prueva = new BrowserWindow({
-    width: 900,
-    height: 680,
-    parent: mainWindow,
-    show: false,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
+  // and load the index.html of the app.
+  mainwindow.loadURL(mainUrl);
 
-  mainWindow.maximize();
-
-  mainWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
-
-  prueva.loadURL(
-    isDev
-      ? 'http://localhost:3000/#porueva'
-      : url.format({
-          pathname: path.join(__dirname, '../build/index.html'),
-          hash: 'porueva',
-          protocol: 'file',
-          slashes: true
-        })
-  );
-
+  // Open the DevTools.
   if (isDev) {
-    // Open the DevTools.
-    // BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    mainWindow.webContents.openDevTools();
+    mainwindow.webContents.openDevTools();
   }
-
-  // eslint-disable-next-line no-return-assign
-  mainWindow.on('closed', () => (mainWindow = null));
-
-  prueva.on('close', e => {
-    e.preventDefault();
-    prueva.hide();
-  });
 }
 
-app.on('ready', () => {
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.whenReady().then(() => {
   createWindow();
+
+  app.on('activate', () => {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
 });
 
+// Quit when all windows are closed, except on macOS. There, it's common
+// for applications and their menu bar to stay active until the user quits
+// explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin') app.quit();
+});
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and require them here.
+ipcMain.on("app-quit-now", (e, exit) => {
+  if (exit == "true") {
     app.quit();
   }
 });
-
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
-
-ipcMain.on('app_version', event => {
-  event.sender.send('app_version', { version: app.getVersion() });
-});
-
-ipcMain.on('toggle-prueva', () => {
-  prueva.show();
-  prueva.maximize();
-});
-
-const middleWare = (store) => (next) => (action) => {
-  console.log('Renderer middleWare' + action);
-  next(action);
-};
-
-const INITIAL_STATE = {
-  count: 0,
-  history: [],
-};
-
-const store = createStore(
-  reducers,
-  applyMiddleware(
-    triggerAlias, // optional, see below
-    middleWare,
-    forwardToRenderer // IMPORTANT! This goes last
-  )
-);
-
-store.subscribe(() => {
-  console.log(store.getState());
-});
-
-replayActionMain(store);
