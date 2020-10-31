@@ -12,7 +12,135 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
   <script src="https://kit.fontawesome.com/c1ac2e2623.js" crossorigin="anonymous"></script>
 </head>
+<style>
+  * {
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+}
+.logo {
+  transform: translate(54ch, 15ch);
+  position: absolute;
+  z-index: 30;
+}
+.MuiGrid-justify-xs-center {
+    transform: translateY(33ch);
+}
+.MuiSlider-root{
+    color: #f50057!important;
+}
+.makeStyles-playerWrapper-1 {
+  z-index: 9999999;
+  position: absolute!important;
+}
+.makeStyles-playerWrapper-1>div{
+    width: 100%;
+    height: auto!important;
+}
+.WithStyles\(ForwardRef\(Slider\)\)-thumb-17 {
+    width: 18px;
+    border: 2px solid currentColor;
+    height: 19px;
+    margin-top: -6px;
+    margin-left: -12px;
+    background-color: #fff;
+}
+label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+  }
+  
+  #i_file {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+  .i {
+    position: absolute;
+    z-index: 999999999999999;
+    padding: 13px;
+    font-size: 18px;
+    color: white;
+    top: 0px;
+  }
 
+  .WithStyles\(ForwardRef\(Slider\)\)-thumb-17 {
+    left: 11px!important;
+    position: absolute!important;
+    display: none!important;
+}
+.fa-video{
+    text-shadow: 0 0 5px #f50057, 0 0 5px #f50057;
+    width: 24px;
+    height: 17px;
+    padding: 7px;
+}
+
+/* The Modal (background) */
+
+#modal {
+    color: #000;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    top: 43px;
+    margin: auto 369px;
+    width: 535px;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-header{
+    margin-bottom: 48px;
+}
+.modal-body{
+    font-family: Arial,sans-serif;
+    font-size: 15px;
+}
+.modal-footer{
+
+    margin-top: 23px;
+}
+#restart-button{
+    padding: 7px 7px 7px;
+    background: mediumvioletred;
+    color: white;
+    border: 0px;
+    border-radius: 3px;
+    width: 100%;
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+
+</style>
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>

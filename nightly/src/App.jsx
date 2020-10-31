@@ -52,7 +52,90 @@ const useStyles = makeStyles((theme) => ({
     //   },
     // },
   },
+  "logo": {
+    transform: "translate(54ch, 15ch)",
+    position: "absolute",
+    "z-index": 30,
+  },
+  "MuiGrid-justify-xs-center": {
+      transform: "translateY(33ch)",
+  },
+  "MuiSlider-root":{
+      color:" #f50057!important",
+  },
+  "makeStyles-playerWrapper-1": {
+   " z-index": 9999999,
+    position: "absolute!important",
+  },
+  "makeStyles-playerWrapper-1>div":{
+      width: "100%",
+      height: "auto!important",
+  },
+  "WithStyles\(ForwardRef\(Slider\)\)-thumb-17": {
+      width: "18px",
+      border: "2px solid currentColor",
+      height: "19px",
+      "margin-top": "-6px",
+      "margin-left": "-12px",
+      "background-color": "#fff",
+  },
+  "label": {
+    cursor: "pointer",
+   
+  },
+  "i_file": {
+    opacity: 0,
+    position: "absolute",
+    "z-index": "-1",
+  },
+  "i": {
+    position: "absolute",
+    "z-index": 999999999999999,
+    padding: "13px",
+    "font-size": "18px",
+    color: "white",
+    top: 0,
+  },
+  'WithStyles\(ForwardRef\(Slider\)\)-thumb-17': {
+    left: "11px!important",
+    position: "absolute!important",
+    display: "none!important",
+  },
+  "modal-content": {
+    "background-color": " #fefefe",
+    margin: "auto",
+    padding: "20px",
+    border: "1px solid #888",
+    width: "80%",
+  },
+  "fa-video": {
+    "text-shadow": "0 0 5px #f50057, 0 0 5px #f50057",
+    width: "24px",
+    height: "17px",
+    padding: "7px",
+  },
+  "modal-header": {
+    "margin-bottom": "48px",
+  },
+  "modal-body": {
+    "font-family": "Arial,sans-serif",
+    "font-size": "15px",
+  },
+  "modal-footer": {
 
+    "margin-top": "23px",
+  },
+  "close": {
+    color: " #aaaaaa",
+    float: "right",
+    "font-size": "28px",
+    "font-weight": "bold",
+    "&:hover,,&:focus": {
+      color: " #000",
+      "text-decoration": "none",
+      cursor: "pointer",
+    },
+  },
   controlsWrapper: {
     visibility: "hidden",
     position: "absolute",
@@ -296,12 +379,12 @@ function App() {
         onMouseMove={handleMouseMove}
         onMouseLeave={hanldeMouseLeave}
         ref={playerContainerRef}
-        className={classes.playerWrapper}
       >
 
         <ReactPlayer
           ref={playerRef}
           width="100%"
+          height="auto"
           url={videoFilePath}
           pip={pip}
           playing={playing}
@@ -344,11 +427,10 @@ function App() {
           volume={volume}
         />
       </div>
-      <img className="logo" srcSet={logo} alt=""/>
       <div className="i">
-          <label htmlFor="i_file" title="Open new video"><i className="fas fa-video"></i></label>
-          <input type="file" id="i_file" onChange={handleVideoUpload} accept=".mp4,.mov,.mkv" />
-        </div>
+        <label htmlFor="i_file" title="Open new video"><i className="fas fa-video"></i></label>
+        <input type="file" id="i_file" onChange={handleVideoUpload} accept=".mp4,.mov,.mkv" />
+      </div>
     </>
   );
 }
