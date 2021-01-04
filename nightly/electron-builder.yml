@@ -1,0 +1,38 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+      - build/**/*
+      - node_modules/**/* 
+      - Data/**/*
+extraMetadata:
+  main: build/electron.js
+  name: Libreria POS
+win:
+  icon: public/icon.ico
+  publish:
+    - github
+  target:
+    - target: nsis
+      arch:
+        - x64
+publish:
+  - provider: github
+    owner: tu_usuario
+    repo: tu_repo
+    publishAutoUpdate: true
+appId: tu_codeName_para_programa
+productName: nombreProducion
+copyright: 'Copyright © 2019 H-Dev'
+extends: react-cra
+electronVersion: 9.1.2
+nsis:
+  allowElevation: false
+  allowToChangeInstallationDirectory: true
+  perMachine: true
+  oneClick: false
+extraFiles:
+  - filter:
+      - dll
