@@ -1,4 +1,5 @@
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZA7FWL3S2MWCA)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FNeyunse%2FNekoPlayerPlus.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FNeyunse%2FNekoPlayerPlus?ref=badge_shield)
 
 ## NekoVideo Plus
 Lightweight video player, programmed in HTML and js
@@ -22,3 +23,6 @@ Linux | X
 ## Captures
 ![](/Captures/01.png)
 ![](/Captures/02.png)
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FNeyunse%2FNekoPlayerPlus.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FNeyunse%2FNekoPlayerPlus?ref=badge_large)
